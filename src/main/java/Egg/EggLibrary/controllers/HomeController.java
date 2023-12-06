@@ -13,4 +13,9 @@ public class HomeController {
     public String index(){
         return "index.html";
     }
+    // Adding a default fallback for any non-matching route
+    @RequestMapping("/**")
+    public String fallback(){
+        return "redirect:/";
+    }
 }
