@@ -54,4 +54,49 @@ public class BookController {
         }
     }
 
+    @GetMapping("/modify/{isbn}")
+    public String update(@PathVariable Long isbn, ModelMap model) {
+
+        model.put("book", bookServ.getOne(isbn));
+        model.addAttribute("authors", authorServ.displayAuthors());
+        model.addAttribute("publishers", publisherServ.displayPublishers());
+
+        return "modified_book.html";
+
+    }
+
+    @PostMapping("/modify/{isbn}")
+    public String update(@PathVariable Long isbn, String title, Integer copies, String authorId, String publisherId, ModelMap model) {
+        try {
+            model.addAttribute("authors", authorServ.displayAuthors());
+            model.addAttribute("publishers", publisherServ.displayPublishers());
+            bookServ.updateBookById(isbn, title, copies, authorId, publisherId);
+            return "redirect:../list";
+        } catch (Exception e) {
+            model.put("book", bookServ.getOne(isbn));
+            model.put("error", e.getMessage());
+            model.addAttribute("authors", authorServ.displayAuthors());
+            model.addAttribute("publishers", publisherServ.displayPublishers());
+            return "modified_book.html";
+        }
+    }
+
+    @GetMapping("/delete/{isbn}")
+    public String delete(@PathVariable Long isbn, ModelMap model) {
+        model.put("book", bookServ.getOne(isbn));
+        return "deleted_book.html";
+    }
+
+    @PostMapping("/delete/{isbn}")
+    public String deleteBook(@PathVariable Long isbn, ModelMap model) {
+        try {
+            bookServ.deleteBook(isbn);
+            return "redirect:../list";
+        } catch (Exception e) {
+            model.put("book", bookServ.getOne(isbn));
+            model.put("error", e.getMessage());
+            return "deleted_book.html";
+        }
+    }
+
 }

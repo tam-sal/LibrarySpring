@@ -7,7 +7,7 @@ import java.util.*;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
+
 
 @Service
 public class PublisherServices {
@@ -43,7 +43,8 @@ public class PublisherServices {
     }
 
     @Transactional
-    public void updatePublisher(String id, String name) {
+    public void updatePublisher(String id, String name) throws Exception {
+        validatePublisher(name);
 
         try {
             Optional<Publisher> resPublisher = publisherRepo.findById(id);
@@ -57,6 +58,19 @@ public class PublisherServices {
             System.out.println("can't update publisher: " + e.getMessage());
             throw e;
         }
+    }
+    
+    @Transactional
+    public void delete(String id){
+        try {
+            publisherRepo.deleteById(id);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public Publisher getOne(String id){
+        return publisherRepo.getOne(id);
     }
     
     private void validatePublisher(String name) throws LibraryExceptions{

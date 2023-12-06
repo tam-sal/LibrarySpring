@@ -1,3 +1,7 @@
+*,nav, body {
+    max-width: 90vw;
+}
+
 .navBar{
     background-color: #fff !important;
 }
@@ -19,7 +23,7 @@
 }
 
 .logo{
-    width: 40%;
+    width: 45px;
     margin: auto;
 }
 

@@ -79,18 +79,32 @@ public class BookServices {
         }
     }
 
+    public Book getOne(Long isbn) {
+        return bookRepository.getOne(isbn);
+    }
+
+    @Transactional
+    public void deleteBook(Long isbn) {
+        try {
+            bookRepository.deleteById(isbn);
+        } catch (Exception e) {
+            System.out.println("Error deleting book");
+            throw e;
+        }
+    }
+
     private void validateAttributes(Long isbn, String title, Integer copies, String authorId, String publisherId) throws LibraryExceptions {
 
         if (isbn == null) {
             throw new LibraryExceptions("ISBN can't be null");
         }
-        if ( title == null || title.isEmpty()) {
+        if (title == null || title.isEmpty()) {
             throw new LibraryExceptions("title can't be empty string or null");
         }
         if (copies < 1 || copies == null) {
             throw new LibraryExceptions("copies must be a positive value");
         }
-        if (authorId == null || publisherId == null || authorId.isEmpty() || publisherId.isEmpty() ) {
+        if (authorId == null || publisherId == null || authorId.isEmpty() || publisherId.isEmpty()) {
             throw new LibraryExceptions("id can't be null or empty string");
         }
     }

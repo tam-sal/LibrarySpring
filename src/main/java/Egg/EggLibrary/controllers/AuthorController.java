@@ -82,7 +82,7 @@ public class AuthorController {
         } catch (Exception e) {
             model.put("author", authorServ.getOne(id));
             model.put("error", e.getMessage());
-            return "modified_author.html";
+            return "deleted_author.html";
         }
     }
 
