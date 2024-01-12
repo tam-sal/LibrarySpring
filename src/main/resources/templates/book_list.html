@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8" >
-        <title>Egg library</title>
+        <title>Wisdom Library</title>
         <link href="css/one-page-wonder.min.css" rel="stylesheet">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -18,7 +18,7 @@
        <nav class="navbar navbar-expand-lg navBar">
             <div class="containerImg">
                 <a href="/" class="navbar-brand d-flex align-items-center">
-                  <img class="logo" src="/img/Egg.png" alt="Img logo egg">
+                  <img class="logo" src="../static/img/Egg.png" alt="Img logo egg" width="45px">
                 </a>
               </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         
-                        <li><a class="dropdown-item" th:href="@{/book/register}">Create Book</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/book/register}">Create Book</a></li>
                         <li><hr class="dropdown-divider"></li>
                         
                         <li><a class="dropdown-item" th:href="@{/book/list}">Books List</a></li>
@@ -46,7 +46,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         
-                        <li><a class="dropdown-item" th:href="@{/author/register}">Create Author</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/author/register}">Create Author</a></li>
                         <li><hr class="dropdown-divider"></li>
                        
                         <li><a class="dropdown-item" th:href="@{/author/list}">Authors List</a></li>
@@ -61,7 +61,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         
-                        <li><a class="dropdown-item" th:href="@{/publisher/register}">Create Publisher</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/publisher/register}">Create Publisher</a></li>
                         <li><hr class="dropdown-divider"></li>
                         
                         <li><a class="dropdown-item" th:href="@{/publisher/list}">Publishers List</a></li>
@@ -80,7 +80,7 @@
                         <th scope="col">copies</th>
                         <th scope="col">author</th>
                         <th scope="col">publishers</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col" sec:authorize="hasRole('ADMIN')">Actions</th>
                         
                     </tr>
                 </thead>
@@ -91,9 +91,9 @@
                         <td th:text="${book.copies}"></td>
                         <td th:text="${book.author.name}"></td>
                         <td th:text="${book.publisher.name}"></td>
-                         <td>
-                            <a th:href= "@{/book/modify/__${book.isbn}__}"><i class="fas fa-feather-alt"></i> Modify </a>
-                            <a th:href= "@{/book/delete/__${book.isbn}__}"><i class="fas fa-feather-alt"></i> Delete </a>
+                         <td sec:authorize="hasRole('ADMIN')">
+                            <a th:href= "@{/book/modify/__${book.isbn}__}" ><i class="fas fa-feather-alt"></i> Modify </a>
+                            <a th:href= "@{/book/delete/__${book.isbn}__}" ><i class="fas fa-feather-alt"></i> Delete </a>
                         </td>
                     </tr>
 

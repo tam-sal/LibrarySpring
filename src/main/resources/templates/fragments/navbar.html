@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-    <head th:replace= "/fragments/head :: head" 
-          <link rel="stylesheet" href="../static/css/index.css">
-    </head>
-
-    <body>
-        <nav class="navbar navbar-expand-lg navBar">
+<nav class="navbar navbar-expand-lg navBar">
             <div class="containerImg">
                 <a href="/" class="navbar-brand d-flex align-items-center">
-                    <img class="logo" src="../static/img/Egg.png" alt="Img logo egg">
+                    <img class="logo" src="../../static/img/Egg.png" alt="Img logo egg">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +9,6 @@
             </button>
             <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto elementos">
-                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" th:if="${session.usersession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Books
@@ -27,7 +18,7 @@
                             <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/book/register}">Create Book</a></li>
                             <li><hr class="dropdown-divider"></li>
 
-                            <li><a class="dropdown-item" th:href="@{/book/list}">Books List</a></li>
+                            <li><a class="dropdown-item" th:href="@{/book/list}">Book List</a></li>
                         </ul>
                     </li>
 
@@ -49,26 +40,22 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" th:if="${session.usersession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Publishers
+                            Publisher
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                             <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/publisher/register}">Create Publisher</a></li>
                             <li><hr class="dropdown-divider"></li>
 
-                            <li><a class="dropdown-item" th:href="@{/publisher/list}">Publishers List</a></li>
+                            <li><a class="dropdown-item" th:href="@{/publisher/list}">Publisher List</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown" th:if="${session.usersession != null}">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profile
                         </a>
-
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" th:href="@{/profile}" >Edit Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-
-                            <li><a class="dropdown-item" href="/logout" >Logout</a></li>
+                            <li><a class="dropdown-item" href="/logout" >Log Out</a></li>
                         </ul>
                     </li>
 
@@ -80,46 +67,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " th:if="${session.usersession == null}" href="/login" id="navbarDropdown" role="button" aria-expanded="false">
-                            Log In
+                            LOGIN!
                         </a>
 
                     </li>
-               
                 </ul>
             </div>
         </nav>
-
-        <header class="header">
-            <section class="contenedorMain">
-                <div class="tituloBiblioteca">
-                    <a class="navbar-brand" href="#">Wisdom Library</a>
-                </div>
-                <div class="container contenedorLibros">
-                    <p class="tituloLibros" th:if="${session.usersession != null}" th:text=" 'Welcome back '+ ${session.usersession.name} "></p>
-                    
-                </div>
-                <div class="bg-circle-1 bg-circle"></div>
-                <div class="bg-circle-2 bg-circle"></div>
-                <div class="bg-circle-3 bg-circle"></div>
-                <div class="bg-circle-4 bg-circle"></div>
-            </section>
-        </header>
-
-        <footer class="text-muted py-5">
-            <div class="containerFooter">
-                <p class="mb-1">Album example is &copy; Bootstrap,<br>but please download and customize it for yourself!</p>
-                <p class="mb-0">New to Bootstrap? <a href="/"><br>Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-                <p class="float-end mb-1">
-                    <a href="#" style="text-decoration:none"><span>⬆️</span> Back to top</a>
-                </p>
-            </div>
-        </footer>
-
-
-
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-    </body>
-
-</html>

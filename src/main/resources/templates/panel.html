@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-    <head th:replace= "/fragments/head :: head" 
-          <link rel="stylesheet" href="../static/css/index.css">
-    </head>
+    <head th:replace= "/fragments/head :: head" </head>
 
     <body>
         <nav class="navbar navbar-expand-lg navBar">
@@ -17,14 +14,13 @@
             </button>
             <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto elementos">
-                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" th:if="${session.usersession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Books
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/book/register}">Create Book</a></li>
+                            <li><a class="dropdown-item"  th:href="@{/book/register}">Create Book</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" th:href="@{/book/list}">Books List</a></li>
@@ -38,7 +34,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/author/register}">Create Author</a></li>
+                            <li><a class="dropdown-item"  th:href="@{/author/register}">Create Author</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" th:href="@{/author/list}">Authors List</a></li>
@@ -53,23 +49,31 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/publisher/register}">Create Publisher</a></li>
+                            <li><a class="dropdown-item" th:href="@{/publisher/register}">Create Publisher</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" th:href="@{/publisher/list}">Publishers List</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown" th:if="${session.usersession != null}">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" th:if="${session.usersession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Users
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" th:href="@{/admin/users}">Users List</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profile
                         </a>
-
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" th:href="@{/profile}" >Edit Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-
-                            <li><a class="dropdown-item" href="/logout" >Logout</a></li>
+                            <li><a class="dropdown-item" th:href="@{/logout}" >Logout</a></li>
                         </ul>
+                        
                     </li>
 
                     <li class="nav-item">
@@ -84,7 +88,6 @@
                         </a>
 
                     </li>
-               
                 </ul>
             </div>
         </nav>
@@ -95,8 +98,8 @@
                     <a class="navbar-brand" href="#">Wisdom Library</a>
                 </div>
                 <div class="container contenedorLibros">
-                    <p class="tituloLibros" th:if="${session.usersession != null}" th:text=" 'Welcome back '+ ${session.usersession.name} "></p>
-                    
+                    <p class="tituloLibros">All books in one place</p>
+                    <a class="btn btn-xl mt-2 boton">Watch Our List</a>
                 </div>
                 <div class="bg-circle-1 bg-circle"></div>
                 <div class="bg-circle-2 bg-circle"></div>

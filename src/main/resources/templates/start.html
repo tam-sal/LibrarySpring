@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-    <head th:replace= "/fragments/head :: head" 
-          <link rel="stylesheet" href="../static/css/index.css">
-    </head>
+    <head th:replace= "/fragments/head :: head" </head>
 
     <body>
         <nav class="navbar navbar-expand-lg navBar">
             <div class="containerImg">
-                <a href="/" class="navbar-brand d-flex align-items-center">
+                <a href="/" class="navbar-brand d-flex align-items-center">     
                     <img class="logo" src="../static/img/Egg.png" alt="Img logo egg">
                 </a>
             </div>
@@ -17,7 +14,6 @@
             </button>
             <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto elementos">
-                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" th:if="${session.usersession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Books
@@ -59,7 +55,7 @@
                             <li><a class="dropdown-item" th:href="@{/publisher/list}">Publishers List</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown" th:if="${session.usersession != null}">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profile
                         </a>
@@ -80,11 +76,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " th:if="${session.usersession == null}" href="/login" id="navbarDropdown" role="button" aria-expanded="false">
-                            Log In
+                            LOGIN!
                         </a>
 
                     </li>
-               
                 </ul>
             </div>
         </nav>
@@ -92,12 +87,18 @@
         <header class="header">
             <section class="contenedorMain">
                 <div class="tituloBiblioteca">
-                    <a class="navbar-brand" href="#">Wisdom Library</a>
+                    <a class="navbar-brand" >Wisdom Library</a>
                 </div>
                 <div class="container contenedorLibros">
-                    <p class="tituloLibros" th:if="${session.usersession != null}" th:text=" 'Welcome back '+ ${session.usersession.name} "></p>
-                    
+                    <p class="tituloLibros" th:if="${session.usersession != null}" th:text=" 'Welcome Back '+ ${session.usersession.email} "></p>
                 </div>
+                <!--
+                <div class="container">
+                    <a th:if="${session.usersession.image != null}" class="d-flex align-items-center">
+                        <img class="logo"  th:src="@{/image/profile/__${session.usersession.id}__}" >
+                    </a>
+                </div>
+                -->
                 <div class="bg-circle-1 bg-circle"></div>
                 <div class="bg-circle-2 bg-circle"></div>
                 <div class="bg-circle-3 bg-circle"></div>
