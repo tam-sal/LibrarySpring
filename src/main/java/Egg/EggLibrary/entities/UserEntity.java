@@ -23,8 +23,19 @@ public class UserEntity {
     
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+    @OneToOne
+    private Image image;
 
     public UserEntity() {
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public String getId() {

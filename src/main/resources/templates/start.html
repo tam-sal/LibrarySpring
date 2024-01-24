@@ -90,15 +90,15 @@
                     <a class="navbar-brand" >Wisdom Library</a>
                 </div>
                 <div class="container contenedorLibros">
-                    <p class="tituloLibros" th:if="${session.usersession != null}" th:text=" 'Welcome Back '+ ${session.usersession.email} "></p>
+                    <p class="tituloLibros" th:if="${session.usersession != null}" th:text=" 'Welcome Back '+ ${session.usersession.name} "></p>
                 </div>
-                <!--
+                
                 <div class="container">
                     <a th:if="${session.usersession.image != null}" class="d-flex align-items-center">
                         <img class="logo"  th:src="@{/image/profile/__${session.usersession.id}__}" >
                     </a>
                 </div>
-                -->
+                
                 <div class="bg-circle-1 bg-circle"></div>
                 <div class="bg-circle-2 bg-circle"></div>
                 <div class="bg-circle-3 bg-circle"></div>
